@@ -45,7 +45,8 @@ To leverage the module, simply import any utilities of interest. For example, to
 
 ```python
    >>> from los_ml_tools import plotting_utils as plotting
-   >>> example_plot = plotting.add_single_fold_prc_to_figure(0.95, 0.80, 'blue', 1)
+   >>> plotting.add_single_fold_prc_to_figure(0.95, 0.80, 'blue', 1)
+   >>> plotting.output_one_fold_prc_roc_results('/tmp/', 'target_class')
 ```
 
 
