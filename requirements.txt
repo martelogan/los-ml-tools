@@ -1,2 +1,6 @@
+scipy
+scikit-learn
+matplotlib
+numpy
 pytest
 sphinx

@@ -3,3 +3,7 @@ dependencies:
   - pip
   - pytest
   - sphinx
+  - numpy
+  - matplotlib
+  - scikit-learn
+  - scipy
