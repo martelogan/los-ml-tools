@@ -12,6 +12,7 @@ from itertools import cycle
 
 import numpy as np
 from matplotlib import pyplot as plt
+from scipy import interp
 from sklearn.metrics import auc
 
 import settings
@@ -80,9 +81,6 @@ def init_prc_and_roc_figure(user_fig, user_prc, user_roc):
 
 
 def add_single_fold_prc_to_figure(precision, recall, color, fold_number):
-    from scipy import interp
-    from sklearn.metrics import auc
-
     global reversed_mean_precision
 
     reversed_recall = np.fliplr([recall])[0]
@@ -97,10 +95,6 @@ def add_single_fold_prc_to_figure(precision, recall, color, fold_number):
 
 
 def add_single_fold_roc_to_figure(fpr, tpr, color, fold_number):
-    from scipy import interp
-
-    from sklearn.metrics import auc
-
     global mean_tpr
 
     mean_tpr += interp(mean_fpr, fpr, tpr)
