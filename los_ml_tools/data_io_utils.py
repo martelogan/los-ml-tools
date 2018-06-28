@@ -6,6 +6,7 @@
 # GLOBAL IMPORTS
 
 import csv
+import os
 
 import numpy
 import pandas
@@ -22,15 +23,45 @@ __maintainer__ = "Logan Martel"
 __email__ = "logan.martel@outlook.com"
 __status__ = "Development"
 
+
 # GLOBAL VARIABLES
 
-target_user_name = ""
+# none for now
 
 
 # PUBLIC INTERFACE
 
 
+# STANDARD INPUT
+
+
+def read_labelled_dataset_csv_as_pandas_df(labelled_dataset_csv_path, index_field_header):
+    """Method to construct pandas data frame for a labelled input csv dataset."""
+    # read in the labelled metadata csv file as a pandas data frame
+    data_frame = pandas.read_csv(labelled_dataset_csv_path)
+    # set an input field as the index
+    data_frame.set_index(index_field_header, inplace=True)
+    # return our customized data frame
+    return data_frame
+
+
+# STANDARD OUTPUT
+
+
+def write_record_to_csv(csv_outfile_path, data_record, csv_headers=None):
+    if csv_headers is None:
+        csv_headers = []
+    if not os.path.isfile(csv_outfile_path):
+        with open(r'' + csv_outfile_path, 'w') as output_stream:
+            writer = csv.writer(output_stream)
+            writer.writerow(csv_headers)
+    with open(r'' + csv_outfile_path, 'a') as output_stream:
+        writer = csv.writer(output_stream)
+        writer.writerow(data_record)
+
+
 # CLASSIFIER I/O
+
 
 def output_classifier_predictions(predictions_data, prediction_headers, outfile_name):
     """ Print the classifier predictions in an output file. """
