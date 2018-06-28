@@ -5,6 +5,11 @@
 
 # GLOBAL IMPORTS
 
+import csv
+
+import numpy
+import pandas
+import sklearn_gbmi
 
 # LICENSE INFORMATION HEADER
 
@@ -25,18 +30,28 @@ target_user_name = ""
 # PUBLIC INTERFACE
 
 
-def hello():
-    print "hello"
+# CLASSIFIER I/O
+
+def output_classifier_predictions(predictions_data, prediction_headers, outfile_name):
+    """ Print the classifier predictions in an output file. """
+    pd_predictions = pandas.DataFrame(predictions_data)
+    pandas.set_option('display.max_rows', len(pd_predictions))
+    with open(outfile_name, 'w') as output_stream:
+        output_stream.write('{0}\n'.format(pd_predictions.to_string(
+            index=False, columns=prediction_headers)))
 
 
-def set_helper_global_vars(argu):
-    global target_user_name
-    if argu.target_user_name:
-        target_user_name = argu.target_user_name
-    else:
-        target_user_name = raw_input("\n\tEnter the target username: \n\t")
+# INTERACTION TEST I/O
 
 
-def example_helper(argu):
-    set_helper_global_vars(argu)
-    hello()
+def output_gb_classifier_interaction_test_results(outfile_name, fitted_classifier,
+                                                  target_feature_vectors, feature_vector_headers):
+    """ Output interaction test results of fitted gradient-boosting classifier applied on target data. """
+    target_dataframe = pandas.DataFrame(numpy.array(target_feature_vectors))
+    target_dataframe.columns = feature_vector_headers
+    h_stats = sklearn_gbmi.h_all_pairs(fitted_classifier, target_dataframe)
+    with open(outfile_name, 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in h_stats.items():
+            # FEATURE NAME 1, FEATURE NAME 2, H_STATISTIC
+            writer.writerow([key[0], key[1], value])

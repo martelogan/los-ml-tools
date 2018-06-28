@@ -20,10 +20,10 @@ __status__ = "Development"
 
 # PATH VARIABLES
 
-PATH = os.path.dirname(os.path.realpath(__file__))
-PRC_ROC_PNG = "_prc_roc.png"
-CUMULATIVE_AUC_DIR = PATH
-CUMULATIVE_AUC_CSV = "_cumulative_auc.csv"
+BASE_PATH = os.path.dirname(os.path.realpath(__file__))
+PRC_ROC_PNG_SUFFIX = "_prc_roc.png"
+CUMULATIVE_AUC_DIR = BASE_PATH
+CUMULATIVE_AUC_CSV_SUFFIX = "_cumulative_auc.csv"
 
 # DEPENDENCY VARIABLES
 

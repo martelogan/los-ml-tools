@@ -156,14 +156,14 @@ def output_k_fold_prc_roc_results(outfile_dir, target_str, should_output_csv=Fal
     # by default, just output the k-fold prc_roc figure
     if data_fields is None:
         data_fields = []
-    fig.savefig(outfile_dir + '/' + target_str + settings.PRC_ROC_PNG, bbox_inches='tight')
+    fig.savefig(outfile_dir + '/' + target_str + settings.PRC_ROC_PNG_SUFFIX, bbox_inches='tight')
 
     if should_output_csv:
         # if writing to csv, let's configure the appropriate paths
         if not cumulative_csv_filepath:
             cumulative_auc_dir = settings.CUMULATIVE_AUC_DIR
             cumulative_csv_filepath = \
-                os.path.join(cumulative_auc_dir, target_str + settings.CUMULATIVE_AUC_CSV)
+                os.path.join(cumulative_auc_dir, target_str + settings.CUMULATIVE_AUC_CSV_SUFFIX)
         # create the file if it does not yet exist
         if not os.path.isfile(cumulative_csv_filepath):
             with open(r'' + cumulative_csv_filepath, 'w') as f:
@@ -194,4 +194,4 @@ def output_one_fold_prc_roc_results(outfile_dir, target_str):
     prc.set_title('Precision Recall Curve For Target: ' + target_str)
     prc.legend(loc="lower right", prop={'size': 12})
 
-    fig.savefig(outfile_dir + '/' + target_str + settings.PRC_ROC_PNG, bbox_inches='tight')
+    fig.savefig(outfile_dir + '/' + target_str + settings.PRC_ROC_PNG_SUFFIX, bbox_inches='tight')

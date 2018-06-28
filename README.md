@@ -12,8 +12,8 @@ Project Status
 --------------
 
 - [x] Add basic plotting utilities
-- [ ] Add basic data io utilities
-- [ ] Add basic data formatting utilities
+- [x] Add basic data io utilities
+- [x] Add basic data formatting utilities
 - ...
 
 Installation
