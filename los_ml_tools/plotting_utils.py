@@ -51,6 +51,7 @@ roc = fig.add_subplot(212)
 # ROC/PRC CONSTRUCTION
 
 def init_basic_plot_settings(user_colors, user_lw):
+    """ Initialize plotting colors and line-width. """
     global colors
     global lw
     colors = user_colors
@@ -58,6 +59,7 @@ def init_basic_plot_settings(user_colors, user_lw):
 
 
 def init_prc_params(user_reversed_mean_precision, user_mean_recall):
+    """ Initialize precision-recall-curve parameters. """
     global reversed_mean_precision
     global mean_recall
     reversed_mean_precision = user_reversed_mean_precision
@@ -65,6 +67,7 @@ def init_prc_params(user_reversed_mean_precision, user_mean_recall):
 
 
 def init_roc_params(user_mean_tpr, user_mean_fpr):
+    """ Initialize receiver-operating characteristic parameters. """
     global mean_tpr
     global mean_fpr
     mean_tpr = user_mean_tpr
@@ -72,6 +75,7 @@ def init_roc_params(user_mean_tpr, user_mean_fpr):
 
 
 def init_prc_and_roc_figure(user_fig, user_prc, user_roc):
+    """ Prepare to plot prc & roc curves. """
     global fig
     global prc
     global roc
@@ -81,6 +85,7 @@ def init_prc_and_roc_figure(user_fig, user_prc, user_roc):
 
 
 def add_single_fold_prc_to_figure(precision, recall, color, fold_number):
+    """ Add single fold to active prc figure. """
     global reversed_mean_precision
 
     reversed_recall = np.fliplr([recall])[0]
@@ -95,6 +100,7 @@ def add_single_fold_prc_to_figure(precision, recall, color, fold_number):
 
 
 def add_single_fold_roc_to_figure(fpr, tpr, color, fold_number):
+    """ Add single fold to active roc figure. """
     global mean_tpr
 
     mean_tpr += interp(mean_fpr, fpr, tpr)
@@ -107,6 +113,7 @@ def add_single_fold_roc_to_figure(fpr, tpr, color, fold_number):
 
 
 def aggregate_k_prc_folds(target_str, n_splits):
+    """ Aggregate folds of active prc figure. """
     global reversed_mean_precision
     global mean_recall
     reversed_mean_precision /= n_splits
@@ -125,6 +132,7 @@ def aggregate_k_prc_folds(target_str, n_splits):
 
 
 def aggregate_k_roc_folds(target_str, n_splits):
+    """ Aggregate folds of active roc figure. """
     global mean_tpr
     global mean_fpr
 
@@ -140,13 +148,14 @@ def aggregate_k_roc_folds(target_str, n_splits):
     roc.set_ylim([-0.05, 1.05])
     roc.set_xlabel('False Positive Rate')
     roc.set_ylabel('True Positive Rate')
-    roc.set_title('Receiver operating characteristic For Target: ' + target_str)
+    roc.set_title('Receiver Operating Characteristic for Target: ' + target_str)
     roc.legend(loc="lower right", prop={'size': 12})
     return mean_auroc
 
 
 def output_k_fold_prc_roc_results(outfile_dir, target_str, should_output_csv=False,
                                   cumulative_csv_filepath='', csv_headers='', data_fields=None):
+    """ Display & output data for active k-fold PRC & ROC curves. """
     # by default, just output the k-fold prc_roc figure
     if data_fields is None:
         data_fields = []
@@ -171,6 +180,7 @@ def output_k_fold_prc_roc_results(outfile_dir, target_str, should_output_csv=Fal
 
 
 def output_one_fold_prc_roc_results(outfile_dir, target_str):
+    """ Display & output data for active one-fold PRC & ROC curves. """
     roc.plot([0, 1], [0, 1], linestyle='--', lw=lw, color='k',
              label='Luck')
     roc.set_xlim([-0.05, 1.05])

@@ -49,6 +49,7 @@ def read_labelled_dataset_csv_as_pandas_df(labelled_dataset_csv_path, index_fiel
 
 
 def write_record_to_csv(csv_outfile_path, data_record, csv_headers=None):
+    """ Easily write or append a record to csv output format. """
     if csv_headers is None:
         csv_headers = []
     if not os.path.isfile(csv_outfile_path):

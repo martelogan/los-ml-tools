@@ -1,20 +1,26 @@
-.. documentation master file, created by
-   sphinx-quickstart on Wed Jul  6 22:46:00 2016.
+.. los-ml-tools documentation master file, created by
+   sphinx-quickstart on Sat Jun 30 20:02:44 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 Los-ML-Tools Documentation
-================================
+==========================
 
-.. py:module:: los-ml-tools
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+.. py:module::los-ml-tools
+
 
 Purpose
 -------
 
-This project, ``los-ml-tools`` provides a template for python projects.
+This project, ``los-ml-tools``, exists to host a collection of Logan Martel, ML Developer's, personal utilities for ML projects.
+
 
 Installation
--------
+------------
 
 Basic install: ``pip install los-ml-tools``
 
@@ -27,22 +33,13 @@ Hackable install:
    python setup.py develop
 
 Example Usage
--------
+-------------
 
-_[Insert environment setup information here]_
-
-Instantiation
-~~~~~~~~~~~~~
-The first thing we do is import the module and get an ``ExampleClass`` 
-object.
+To leverage the module, simply import any utilities of interest. For example, to apply a plotting utility:
 
 .. code-block:: python
 
-   >>> from los-ml-tools import ExampleClass as Ex
-   >>> example = Ex("hello")
-   >>> ...
-
-Execution
-~~~~~~~~~
-_[Insert execution information here]_
+   >>> from los_ml_tools import plotting_utils as plotting
+   >>> plotting.add_single_fold_prc_to_figure(0.95, 0.80, 'blue', 1)
+   >>> plotting.output_one_fold_prc_roc_results('/tmp/', 'target_class')
 
