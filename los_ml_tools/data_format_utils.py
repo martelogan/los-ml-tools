@@ -37,11 +37,6 @@ def scale01(values, mini=None, maxi=None, tol=1e-6):
     return scaled_values, mini, maxi
 
 
-def not_na(item):
-    """ Remove NAs and empty values. """
-    return not (item == "NA" or item == "")
-
-
 def match_feature_vector_length(feature_vec_1, feature_vec_2):
     """
     Trim the feature vectors to the same size.

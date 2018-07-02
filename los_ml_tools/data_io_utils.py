@@ -10,7 +10,6 @@ import os
 
 import numpy
 import pandas
-import sklearn_gbmi
 
 # LICENSE INFORMATION HEADER
 
@@ -79,6 +78,7 @@ def output_classifier_predictions(predictions_data, prediction_headers, outfile_
 def output_gb_classifier_interaction_test_results(outfile_name, fitted_classifier,
                                                   target_feature_vectors, feature_vector_headers):
     """ Output interaction test results of fitted gradient-boosting classifier applied on target data. """
+    import sklearn_gbmi
     target_dataframe = pandas.DataFrame(numpy.array(target_feature_vectors))
     target_dataframe.columns = feature_vector_headers
     h_stats = sklearn_gbmi.h_all_pairs(fitted_classifier, target_dataframe)

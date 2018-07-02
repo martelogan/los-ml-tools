@@ -2,7 +2,6 @@
 
 from setuptools import setup, find_packages
 
-
 with open('docs/index.rst') as f:
     readme = f.read()
 
@@ -11,9 +10,10 @@ with open('LICENSE') as f:
 
 setup(
     name='los-ml-tools',
-    version='0.1.0',
+    version='0.1.1',
     description='Library of Logan Martel, ML Developer\'s, personal utilities for ML projects.',
     long_description=readme,
+    long_description_content_type="text/x-rst",
     author='Logan Martel',
     author_email='logan.martel@outlook.com',
     url='https://github.com/martelogan/los-ml-tools',
@@ -37,9 +37,8 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
     # What does your project relate to?
-    keywords= (
-		'Python'
-    ), 
+    keywords=(
+        'Python'
+    ),
     packages=find_packages(exclude=('tests', 'docs'))
 )
-
