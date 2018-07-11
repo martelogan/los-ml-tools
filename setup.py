@@ -1,23 +1,38 @@
 # -*- coding: utf-8 -*-
+import os
 
 from setuptools import setup, find_packages
 
-with open('docs/index.rst') as f:
-    readme = f.read()
+install_requires = [
+    'numpy',
+    'scipy',
+    'scikit-learn',
+    'sklearn-gbmi',
+    'matplotlib',
+    'pandas'
+]
 
-with open('LICENSE') as f:
-    license = f.read()
+tests_require = [
+    'pytest',
+    'sphinx'
+]
+
+
+def read(fname):
+    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+        return f.read()
+
 
 setup(
     name='los-ml-tools',
-    version='0.1.1',
+    version='0.1.5',
     description='Library of Logan Martel, ML Developer\'s, personal utilities for ML projects.',
-    long_description=readme,
-    long_description_content_type="text/x-rst",
+    long_description=read('README.md'),
+    long_description_content_type="text/markdown",
     author='Logan Martel',
     author_email='logan.martel@outlook.com',
     url='https://github.com/martelogan/los-ml-tools',
-    license=license,
+    license='GPLv3+',
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         # How mature is this project? Common values are
@@ -38,7 +53,10 @@ setup(
     ],
     # What does your project relate to?
     keywords=(
-        'Python'
+        'Python', 'Machine Learning'
     ),
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    install_requires=install_requires,
+    tests_require=tests_require,
+    test_suite='tests'
 )
